@@ -227,6 +227,23 @@ object residuosRadioactivos{
 	}
 }
 
+object embalajeDeSeguridad {
+	var contenido = arenaAGranel
+  
+	method peso() = contenido.peso()
+
+	method nivelPeligrosida() = contenido.nivelPeligrosida()/2
+
+	method contenido(cont) {
+		 contenido = cont
+	}
+	method contBultos()= 2
+
+	method reaccionar() {
+		self.peso()
+	}
+}
+
 
 
 
