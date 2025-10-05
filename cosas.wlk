@@ -1,6 +1,6 @@
 object knightRider {
 	method peso() =  500 
-	method nivelPeligrosidad() = return 10 
+	method nivelPeligrosidad() =  10 
 
 }
 
@@ -39,6 +39,9 @@ object paqueteDeLadrillos{
 
 	var cantDeLadrillos = 0
 
+	method peso() = cantDeLadrillos * pesoPorLadrillo
+	
+
 	method cantDeLadrillos() = cantDeLadrillos
 
 	method agregar(cant) {
@@ -76,8 +79,37 @@ object paqueteDeLadrillos{
 	 method reaccionar(){
 		self.agregar(12)
 	 } 
-	
 }
+
+object arenaAGranl {
+	var property peso = 0 
+
+	method nivelPeligrosidad() = 1
+
+	method agregar(cant) {
+		peso += cant
+	}
+
+	method sacar(cant) {
+		self.validarSacarArena(cant)
+		peso -= cant
+	  
+	}
+
+	method validarSacarArena(cant){
+		if(peso < cant){
+			self.error("ERROR, no cuenta con la cantidad de arena disponible")
+		}
+	}
+	method cantBultos() = 1
+
+	method reaccionar(){
+		self.agregar(20)
+	}
+
+
+}
+	
 
 
 
