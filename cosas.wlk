@@ -146,7 +146,57 @@ object desArmado {
 	method cantBultos() = 1
 }
 
+object contenedorPortuario {
+		const cosasDelContenedor = #{}
 
+		const pesoContenedor = 100
+
+		method cargar(cosa){
+			cosasDelContenedor.add(cosa)
+		}	
+	
+	method descargar(cosa){
+		self.validarDescargar(cosa)
+
+		cosasDelContenedor.remove(cosa)
+
+	}
+	method validarDescargar(cosa) {
+		if(not cosasDelContenedor.contains(cosa)){
+			self.error("el contenedor no tiene nada!!")
+		}
+	}
+
+	method peso() = pesoContenedor + self.pesoCosas()	
+
+	method pesoCosas() {
+		return cosasDelContenedor.sum()({ cosa => cosa.peso() })
+	}
+
+	method nivelPeligrosidad() = self.nivelObjetoMasPeligroso()
+
+	method nivelObjetoMasPeligroso(){
+		return self.pegorsidadDeLasCosas().maxIfEmpty({0})
+	}
+
+	method pegorsidadDeLasCosas(){
+		return cosasDelContenedor.map({cosa => cosa.nivelPeligrosidad()})
+	}
+
+	method cantBultos() = 1 + self.cantBultosDeLasCosas()
+
+
+	method cantBultosDeLasCosas() {
+		return cosasDelContenedor.sum({cosa => cosa.cantBultos()})
+	
+	}
+
+	method reaccionar() {
+		//recorro un forEach para aplicar polimorfismo en reaccionar que recorra las cosas del conenedor y reaccione.
+		cosasDelContenedor.forEach({cosa =>cosa.reaccionar()})  
+	}
+
+}
 
 
 
