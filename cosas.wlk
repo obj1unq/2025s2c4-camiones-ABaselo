@@ -109,7 +109,43 @@ object arenaAGranl {
 
 
 }
+
+object bateriaAntiarea{
+
+	var estado = desArmado
+
+	method peso() = estado.peso()
+
+	method estado() = estado
+
+	method nivelPeligrosidad() = estado.nivelPeligrosidad()
+
+	method cantBultos() = estado.cantBultos()
+
+	method reaccionar(){
+		estado = armado
+	}
 	
+}
+	
+object armado {
+	
+	method peso() = 300
+	
+	method nivelPeligrosidad() = 100
+
+	method cantBultos() = 2
+}
+
+object desArmado {
+	
+	method peso() = 200
+	
+	method nivelPeligrosidad() = 0
+
+	method cantBultos() = 1
+}
+
 
 
 
