@@ -1,6 +1,6 @@
 object knightRider {
-	method peso() { return 500 }
-	method nivelPeligrosidad() { return 10 }
+	method peso() =  500 
+	method nivelPeligrosidad() = return 10 
 
 }
 
@@ -16,7 +16,7 @@ method nivelPeligrosidad() { return 1 }
 
 	method peso() { return 800 }
 
-	method nivelPeligrosidad(){return estado.nivelPeligrosidad() }
+	method nivelPeligrosidad() = estado.nivelPeligrosidad() 
    
 	method reaccionar(){
 		estado = robot
@@ -24,13 +24,59 @@ method nivelPeligrosidad() { return 1 }
  }
 
  object auto {
-	method nivelPeligrosidad(){return 15 }   
+	method nivelPeligrosidad() =  15    
  }
 
 
 object robot {
-	method nivelPeligrosidad() {return 30}
+	method nivelPeligrosidad() =  30
   
+}
+
+object paqueteDeLadrillos{
+	
+	const pesoPorLadrillo = 2
+
+	var cantDeLadrillos = 0
+
+	method cantDeLadrillos() = cantDeLadrillos
+
+	method agregar(cant) {
+	  cantDeLadrillos += cant
+	}
+
+	method sacar(cant){
+		self.validarSacarLadrillos(cant)
+		cantDeLadrillos -= cant
+	}
+
+	method validarSacarLadrillos(cant) {
+		if(cant>cant){
+			self.error("la cantidad de ladrillos no esta disponible, supera la cantidad que almacena")
+		}
+	  
+	}
+
+	method nivelPeligrosidad() = 2
+
+	method cantBultos(){
+
+		 if ( cantDeLadrillos <= 100){
+			return 1
+		 }
+		 else if (cantDeLadrillos.between(101, 300)){
+			return 2
+		 }
+		 else{
+			return 3
+		 }	
+		
+	}
+
+	 method reaccionar(){
+		self.agregar(12)
+	 } 
+	
 }
 
 
