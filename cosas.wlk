@@ -199,5 +199,34 @@ object contenedorPortuario {
 }
 
 
+object residuosRadioactivos{
+    var property  peso = 0
+
+    method nivelPeligrosidad() = 200
+
+	method cantBultos() = 1
+
+	method agregar(cant) {
+		peso += cant	  
+	}
+
+	method sacar(cant){
+		self.validarSacarResiudiosRadioactivos(cant)
+		peso -= cant
+	}
+	
+	method  validarSacarResiudiosRadioactivos(cant) {
+		if(cant > peso){
+			self.error("no tiene Resiudios Radioactivos en este momento")
+
+		}	  
+	}
+
+	method reaccionar() {
+       self.agregar(15)
+	}
+}
+
+
 
 
