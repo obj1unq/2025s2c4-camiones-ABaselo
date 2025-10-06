@@ -92,3 +92,19 @@ object camion {
 
 
 }
+
+
+object ruta9{
+	
+	method nivelPeligrosidad(){
+		return 11
+	}
+
+	method validarCircular(camion) {
+		if(not camion.puedeCircularEnRuta(self.nivelPeligrosidad())){
+			self.error("Supera el nivel de peligrosidad permitido")
+		}
+	  
+	}
+	
+}
