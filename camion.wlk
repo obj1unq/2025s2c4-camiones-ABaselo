@@ -108,3 +108,20 @@ object ruta9{
 	}
 	
 }
+
+object caminosVecinales{
+	var pesoMax = 0
+
+	method pesoMaximo(peso) {
+		pesoMax = peso	  
+	}
+
+	method execedidoDePeso(camion) = pesoMax < camion.pesoTotal()
+
+	method validarCircular(camion){
+
+		if(self.execedidoDePeso(camion)){
+				self.error("Supera el peso permitido")
+		}
+	} 
+}
