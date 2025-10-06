@@ -69,5 +69,15 @@ describe "Test de camion" {
       
     }
 
+    test"test ejemplo 7"{
+        camion.cargar(paqueteDeLadrillos)
+
+        assert.equals(12, paqueteDeLadrillos.cantDeLadrillos())
+
+        assert.equals(24, paqueteDeLadrillos.peso())
+    }
+
+    
+
 
 }
