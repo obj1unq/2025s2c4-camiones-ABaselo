@@ -1,0 +1,27 @@
+import camion.*
+import cosas.*
+
+describe "Test de camion" {
+    test "test ejemplo 1" {
+        camion.cargar(bumblebee)
+        camion.cargar(paqueteDeLadrillos)
+        assert.that(camion.todoPesoPar())
+        assert.that(camion.hayAlgunoQuePesa(800))
+        assert.equals(paqueteDeLadrillos, camion.elDeNivel(2))
+        assert.equals(1824,camion.pesoTotal())
+        assert.notThat(camion.excedidoDePeso())
+        assert.that(camion.puedeCircularEnRuta(50))
+    }
+
+    test "test ejemplo 2"{
+        contenedorPortuario.cargar(arenaAGranel)
+        contenedorPortuario.cargar(bumblebee)
+        camion.cargar(contenedorPortuario)
+        embalajeDeSeguridad.contenido(knightRider)
+        camion.cargar(embalajeDeSeguridad)
+
+        assert.that(camion.tienenAlgoQuePesaEntre(400,500))
+        assert.equals(contenedorPortuario, camion.cosaMasPesada())
+        assert.equals(6, camion.totalBultos())
+    }
+}

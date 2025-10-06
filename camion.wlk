@@ -9,8 +9,9 @@ object camion {
 	const pesoMaximo = 2500
 
 	method cargar(unaCosa) {
-		cosas.reaccionar()
+		unaCosa.reaccionar()
 		cosas.add(unaCosa)
+		
 	}
 
 	method descarga(cosa){
@@ -81,9 +82,9 @@ object camion {
 
 	method validarViaje(destino, camino){
 
-		//camino.validarCircular(self)
+		camino.validarCircular(self)
 	
-		//destino.validarDescarga(self)
+		destino.validarDescarga(self)
 	}
 
 	method vaciarCamion(){
@@ -124,4 +125,33 @@ object caminosVecinales{
 				self.error("Supera el peso permitido")
 		}
 	} 
+}
+
+object almacen{
+
+	const cantidadDeBultosMaxima = 3
+
+	const property cosasDelAlmacen = #{}
+
+	method cargar(cosa){
+		cosasDelAlmacen.add(cosa)
+	} 
+
+	method cantBultos() = cosasDelAlmacen.sum({cosa => cosa.cantBultos()})
+
+	method descargar(cosas, camion){
+		self.validarDescarga(camion)
+
+		self.cosasDelAlmacen().addAll(cosas)
+	}
+
+	method validarDescarga(camion){
+
+		if(cantidadDeBultosMaxima < camion.totalBultos() + self.cantBultos() )
+		{
+			self.error("Supera la cantidad maxima de bultos")
+		}
+	}
+
+
 }
