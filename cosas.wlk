@@ -14,7 +14,7 @@ object knightRider {
  object bumblebee {
 	var property estado = auto 
 
-	method peso() { return 800 }
+	method peso() = 800 
 
 	method nivelPeligrosidad() = estado.nivelPeligrosidad() 
    
@@ -87,10 +87,11 @@ object paqueteDeLadrillos{
 
 object arenaAGranel {
 
-	var property peso = 0
+	var property peso  = 0
 
 	method peso() = peso
 
+	
 	method nivelPeligrosidad() {
 		return 1
 	}
@@ -255,7 +256,7 @@ object embalajeDeSeguridad {
 	method contenido(cont) {
 		 contenido = cont
 	}
-	method contBultos()= 2
+	method cantBultos()= 2
 
 	method reaccionar() {
 		self.peso()
