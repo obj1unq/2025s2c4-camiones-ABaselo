@@ -1,6 +1,268 @@
 object knightRider {
-	method peso() { return 500 }
-	method nivelPeligrosidad() { return 10 }
+	method peso() =  500 
+	method nivelPeligrosidad() =  10 
+
+	   method reaccionar() {
+
+	   }
+
+	   method cantBultos() = 1
+	   
+
 }
+
+ object bumblebee {
+	var property estado = auto 
+
+	method peso() = 800 
+
+	method nivelPeligrosidad() = estado.nivelPeligrosidad() 
+   
+	method reaccionar(){
+		estado = robot
+	}
+
+	method cantBultos() = 1
+
+	method estado() = estado
+ }
+
+ object auto {
+	method nivelPeligrosidad() =  15    
+ }
+
+
+object robot {
+	method nivelPeligrosidad() =  30
+  
+}
+
+object paqueteDeLadrillos{
+	
+	const pesoPorLadrillo = 2
+
+	var cantDeLadrillos = 0
+
+	method peso() = cantDeLadrillos * pesoPorLadrillo
+	
+
+	method cantDeLadrillos() = cantDeLadrillos
+
+	method agregar(cant) {
+	  cantDeLadrillos += cant
+	}
+
+	method sacar(cant){
+		self.validarSacarLadrillos(cant)
+		cantDeLadrillos -= cant
+	}
+
+	method validarSacarLadrillos(cant) {
+		if(cant>cant){
+			self.error("la cantidad de ladrillos no esta disponible, supera la cantidad que almacena")
+		}
+	  
+	}
+
+	method nivelPeligrosidad() = 2
+
+	method cantBultos(){
+
+		 if ( cantDeLadrillos <= 100){
+			return 1
+		 }
+		 else if (cantDeLadrillos.between(101, 300)){
+			return 2
+		 }
+		 else{
+			return 3
+		 }	
+		
+	}
+
+	 method reaccionar(){
+		self.agregar(12)
+	 } 
+}
+
+object arenaAGranel {
+
+	var property peso  = 0
+
+	method peso() = peso
+
+	
+	method nivelPeligrosidad() {
+		return 1
+	}
+
+	method agregar(cant) {
+		peso += cant
+	}
+
+	method sacar(cant) {
+		self.validarSacarArena(cant)
+		peso -= cant
+	}
+
+	method validarSacarArena(cant) {
+		if (cant > peso) {
+			self.error("La cantidad de arena a sacar supera la disponible.")
+		}
+	}
+
+	method cantBultos() {
+		return 1
+	}
+
+	method reaccionar() {
+		self.agregar(20)
+	}
+
+}
+
+object bateriaAntiarea{
+
+	var estado = desArmado
+
+	method peso() = estado.peso()
+
+	method estado() = estado
+
+	method nivelPeligrosidad() = estado.nivelPeligrosidad()
+
+	method cantBultos() = estado.cantBultos()
+
+	method reaccionar(){
+		estado = armado
+	}
+
+	 method estaArmado() = estado.estaArmado()
+	
+}
+	
+object armado {
+	
+	method peso() = 300
+	
+	method nivelPeligrosidad() = 100
+
+	method cantBultos() = 2
+
+    method estaArmado() = true
+}
+
+object desArmado {
+	
+	method peso() = 200
+	
+	method nivelPeligrosidad() = 0
+
+	method cantBultos() = 1
+
+	method estaArmado() = false
+}
+
+object contenedorPortuario {
+		const cosasDelContenedor = #{}
+
+		const pesoContenedor = 100
+
+		method cargar(cosa){
+			cosasDelContenedor.add(cosa)
+		}	
+	
+	method descargar(cosa){
+		self.validarDescargar(cosa)
+
+		cosasDelContenedor.remove(cosa)
+
+	}
+	method validarDescargar(cosa) {
+		if(not cosasDelContenedor.contains(cosa)){
+			self.error("el contenedor no tiene nada!!")
+		}
+	}
+
+	method peso() = pesoContenedor + self.pesoCosas()	
+
+	method pesoCosas() {
+		return cosasDelContenedor.sum()({ cosa => cosa.peso() })
+	}
+
+	method nivelPeligrosidad() = self.nivelObjetoMasPeligroso()
+
+	method nivelObjetoMasPeligroso(){
+		return self.pegorsidadDeLasCosas().maxIfEmpty({0})
+	}
+
+	method pegorsidadDeLasCosas(){
+		return cosasDelContenedor.map({cosa => cosa.nivelPeligrosidad()})
+	}
+
+	method cantBultos() = 1 + self.cantBultosDeLasCosas()
+
+
+	method cantBultosDeLasCosas() {
+		return cosasDelContenedor.sum({cosa => cosa.cantBultos()})
+	
+	}
+
+	method reaccionar() {
+		//recorro un forEach para aplicar polimorfismo en reaccionar que recorra las cosas del conenedor y reaccione.
+		cosasDelContenedor.forEach({cosa =>cosa.reaccionar()})  
+	}
+
+}
+
+
+object residuosRadioactivos{
+    var property  peso = 0
+
+	method peso() = peso
+
+    method nivelPeligrosidad() = 200
+
+	method cantBultos() = 1
+
+	method agregar(cant) {
+		peso += cant	  
+	}
+
+	method sacar(cant){
+		self.validarSacarResiudiosRadioactivos(cant)
+		peso -= cant
+	}
+	
+	method  validarSacarResiudiosRadioactivos(cant) {
+		if(cant > peso){
+			self.error("no tiene Resiudios Radioactivos en este momento")
+
+		}	  
+	}
+
+	method reaccionar() {
+       self.agregar(15)
+	}
+}
+
+object embalajeDeSeguridad {
+	var contenido = arenaAGranel
+  
+	method peso() = contenido.peso()
+
+	method nivelPeligrosidad() = contenido.nivelPeligrosidad()/2
+
+	method contenido(cont) {
+		 contenido = cont
+	}
+	method cantBultos()= 2
+
+	method reaccionar() {
+		self.peso()
+	}
+}
+
+
 
 

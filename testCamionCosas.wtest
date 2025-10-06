@@ -1,0 +1,112 @@
+import camion.*
+import cosas.*
+
+describe "Test de camion" {
+
+    
+    test "test ejemplo 1" {
+        camion.cargar(bumblebee)
+        camion.cargar(paqueteDeLadrillos)
+        assert.that(camion.todoPesoPar())
+        assert.that(camion.hayAlgunoQuePesa(800))
+        assert.equals(paqueteDeLadrillos, camion.elDeNivel(2))
+        assert.equals(1824,camion.pesoTotal())
+        assert.notThat(camion.excedidoDePeso())
+        assert.that(camion.puedeCircularEnRuta(50))
+    }
+
+    test "test ejemplo 2"{
+    
+         contenedorPortuario.cargar(arenaAGranel)
+         arenaAGranel.agregar(200)
+
+        
+         contenedorPortuario.cargar(bumblebee)
+       
+        //contenedorPortuario.cargar(knightRider)
+         camion.cargar(contenedorPortuario)
+        embalajeDeSeguridad.contenido(knightRider)
+        camion.cargar(embalajeDeSeguridad)
+        //test con error me dice que las propiedades me dan error number parametros que no reciben ese tipo de datos.
+
+
+        //assert.that(camion.tienenAlgoQuePesaEntre(400,500))
+        // assert.equals(contenedorPortuario, camion.cosaMasPesada())
+       assert.equals(5, camion.totalBultos())
+
+        
+    }
+
+   
+
+    test "test ejemplo 3"{
+    camion.cargar(bateriaAntiarea)
+    camion.cargar(residuosRadioactivos)
+   
+    almacen.cargar(bumblebee)
+
+    caminosVecinales.pesoMaximo(2000)
+
+    assert.throwsException({camion.transportar(almacen, caminosVecinales)})
+
+    }
+
+    test "test ejemplo 4"{
+
+        camion.cargar(knightRider)
+
+        almacen.cargar(bumblebee)
+
+        camion.transportar(almacen, ruta9)
+
+        assert.equals(#{knightRider,bumblebee}, almacen.cosasDelAlmacen())
+
+    }
+
+    test "test ejemplo 5"{
+
+        camion.cargar(bumblebee)
+        almacen.cargar(knightRider)
+
+        assert.throwsException({camion.transportar(almacen,ruta9)})
+    }
+
+    test "test ejemplo 6" {
+        camion.cargar(bumblebee)
+
+        assert.equals(robot, bumblebee.estado())
+
+        assert.equals(30, bumblebee.nivelPeligrosidad())
+      
+    }
+
+    test"test ejemplo 7"{
+        camion.cargar(paqueteDeLadrillos)
+
+        assert.equals(12, paqueteDeLadrillos.cantDeLadrillos())
+
+        assert.equals(24, paqueteDeLadrillos.peso())
+    }
+
+    test "test ejemplo 8"{
+        camion.cargar(bateriaAntiarea)
+       
+        bateriaAntiarea.reaccionar()
+
+       assert.that(bateriaAntiarea.estaArmado())
+       assert.equals(300, bateriaAntiarea.peso())
+       assert.equals(100, bateriaAntiarea.nivelPeligrosidad())
+    }
+
+    test "test ejemplo 9"{
+        contenedorPortuario.cargar(arenaAGranel)
+
+        camion.cargar(contenedorPortuario)
+
+        assert.equals(20,arenaAGranel.peso())
+    }
+
+
+
+
+}
