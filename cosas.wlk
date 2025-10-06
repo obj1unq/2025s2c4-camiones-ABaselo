@@ -2,6 +2,13 @@ object knightRider {
 	method peso() =  500 
 	method nivelPeligrosidad() =  10 
 
+	   method reaccionar() {
+
+	   }
+
+	   method cantBultos() = 1
+	   
+
 }
 
  object bumblebee {
@@ -14,6 +21,10 @@ object knightRider {
 	method reaccionar(){
 		estado = robot
 	}
+
+	method cantBultos() = 1
+
+	method estado() = estado
  }
 
  object auto {

@@ -31,13 +31,42 @@ describe "Test de camion" {
     test "test ejemplo 3"{
     camion.cargar(bateriaAntiarea)
     camion.cargar(residuosRadioactivos)
+   
     almacen.cargar(bumblebee)
 
     caminosVecinales.pesoMaximo(2000)
 
     assert.throwsException({camion.transportar(almacen, caminosVecinales)})
 
+    }
 
+    test "test ejemplo 4"{
+
+        camion.cargar(knightRider)
+
+        almacen.cargar(bumblebee)
+
+        camion.transportar(almacen, ruta9)
+
+        assert.equals(#{knightRider,bumblebee}, almacen.cosasDelAlmacen())
+
+    }
+
+    test "test ejemplo 5"{
+
+        camion.cargar(bumblebee)
+        almacen.cargar(knightRider)
+
+        assert.throwsException({camion.transportar(almacen,ruta9)})
+    }
+
+    test "test ejemplo 6" {
+        camion.cargar(bumblebee)
+
+        assert.equals(robot, bumblebee.estado())
+
+        assert.equals(30, bumblebee.nivelPeligrosidad())
+      
     }
 
 

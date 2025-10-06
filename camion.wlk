@@ -9,7 +9,9 @@ object camion {
 	const pesoMaximo = 2500
 
 	method cargar(unaCosa) {
+		
 		unaCosa.reaccionar()
+    	
 		cosas.add(unaCosa)
 		
 	}
@@ -58,7 +60,9 @@ object camion {
 	method objetoMasPeligrosoQue(nivel) = self.objetosQueSuperanPeligrosidad(cosas.nivelPeligrosidad())
 
 	method puedeCircularEnRuta(nivelParaCircular){
-		return not self.objetosQueSuperanPeligrosidad(nivelParaCircular).isEmpty()
+		
+		
+		return  self.objetosQueSuperanPeligrosidad(nivelParaCircular).isEmpty()
 	}
 
 	method tienenAlgoQuePesaEntre(minCosa,maxCosa){
@@ -139,7 +143,7 @@ object almacen{
 
 	method cantBultos() = cosasDelAlmacen.sum({cosa => cosa.cantBultos()})
 
-	method descargar(cosas, camion){
+	method descarga(cosas, camion){
 		self.validarDescarga(camion)
 
 		self.cosasDelAlmacen().addAll(cosas)
