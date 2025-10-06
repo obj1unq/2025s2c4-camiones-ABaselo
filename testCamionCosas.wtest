@@ -19,9 +19,13 @@ describe "Test de camion" {
         camion.cargar(contenedorPortuario)
         embalajeDeSeguridad.contenido(knightRider)
         camion.cargar(embalajeDeSeguridad)
+        //test con error me dice que las propiedades me dan error number parametros que no reciben ese tipo de datos.
 
+        
         assert.that(camion.tienenAlgoQuePesaEntre(400,500))
         assert.equals(contenedorPortuario, camion.cosaMasPesada())
         assert.equals(6, camion.totalBultos())
     }
+
+
 }

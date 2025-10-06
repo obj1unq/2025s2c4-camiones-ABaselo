@@ -4,13 +4,6 @@ object knightRider {
 
 }
 
-object arenaAGranel{
-var  property  peso = 0 
-
-method nivelPeligrosidad() { return 1 }
-
-
-}
  object bumblebee {
 	var property estado = auto 
 
@@ -81,10 +74,15 @@ object paqueteDeLadrillos{
 	 } 
 }
 
-object arenaAGranl {
-	var property peso = 0 
+object arenaAGranel {
 
-	method nivelPeligrosidad() = 1
+	var property peso = 0
+
+	method peso() = peso
+
+	method nivelPeligrosidad() {
+		return 1
+	}
 
 	method agregar(cant) {
 		peso += cant
@@ -93,20 +91,21 @@ object arenaAGranl {
 	method sacar(cant) {
 		self.validarSacarArena(cant)
 		peso -= cant
-	  
 	}
 
-	method validarSacarArena(cant){
-		if(peso < cant){
-			self.error("ERROR, no cuenta con la cantidad de arena disponible")
+	method validarSacarArena(cant) {
+		if (cant > peso) {
+			self.error("La cantidad de arena a sacar supera la disponible.")
 		}
 	}
-	method cantBultos() = 1
 
-	method reaccionar(){
-		self.agregar(20)
+	method cantBultos() {
+		return 1
 	}
 
+	method reaccionar() {
+		self.agregar(20)
+	}
 
 }
 
@@ -202,6 +201,8 @@ object contenedorPortuario {
 object residuosRadioactivos{
     var property  peso = 0
 
+	method peso() = peso
+
     method nivelPeligrosidad() = 200
 
 	method cantBultos() = 1
@@ -232,7 +233,7 @@ object embalajeDeSeguridad {
   
 	method peso() = contenido.peso()
 
-	method nivelPeligrosidad() = contenido.nivelPeligrosida()/2
+	method nivelPeligrosidad() = contenido.nivelPeligrosidad()/2
 
 	method contenido(cont) {
 		 contenido = cont
