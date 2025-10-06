@@ -87,6 +87,14 @@ describe "Test de camion" {
        assert.equals(100, bateriaAntiarea.nivelPeligrosidad())
     }
 
+    test "test ejemplo 9"{
+        contenedorPortuario.cargar(arenaAGranel)
+
+        camion.cargar(contenedorPortuario)
+
+        assert.equals(20,arenaAGranel.peso())
+    }
+
 
 
 
