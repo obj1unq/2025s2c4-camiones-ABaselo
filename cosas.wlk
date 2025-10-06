@@ -232,7 +232,7 @@ object embalajeDeSeguridad {
   
 	method peso() = contenido.peso()
 
-	method nivelPeligrosida() = contenido.nivelPeligrosida()/2
+	method nivelPeligrosidad() = contenido.nivelPeligrosida()/2
 
 	method contenido(cont) {
 		 contenido = cont
