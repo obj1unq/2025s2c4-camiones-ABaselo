@@ -135,6 +135,8 @@ object bateriaAntiarea{
 	method reaccionar(){
 		estado = armado
 	}
+
+	 method estaArmado() = estado.estaArmado()
 	
 }
 	
@@ -145,6 +147,8 @@ object armado {
 	method nivelPeligrosidad() = 100
 
 	method cantBultos() = 2
+
+    method estaArmado() = true
 }
 
 object desArmado {
@@ -154,6 +158,8 @@ object desArmado {
 	method nivelPeligrosidad() = 0
 
 	method cantBultos() = 1
+
+	method estaArmado() = false
 }
 
 object contenedorPortuario {
